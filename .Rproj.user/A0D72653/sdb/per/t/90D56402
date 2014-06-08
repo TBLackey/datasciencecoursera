@@ -1,0 +1,17 @@
+{
+    "contents" : "plot3<-function(){\n  require(data.table)\n  require(lubridate)\n  \n  ##Retrieve data from the text file\n  meter<-fread(\"household_power_consumption.txt\")\n  meter$Date<-as.Date(meter$Date,\"%d/%m/%Y\")\n  newmeter <- meter[which(meter$Date==\"2007-02-01\")]\n  newmeter2<- meter[which(meter$Date==\"2007-02-02\")]\n  meter<-rbind(newmeter,newmeter2)\n  DateTime<-ymd_hms(paste(meter$Date, meter$Time, sep = \"_\"))\n  \n  ##Write plot to a png file\n  png(filename=\"plot3.png\")\n  \n  plot(DateTime,meter$Sub_metering_1,type=\"l\",xlab=\"\",ylab=\"Energy sub metering\",col=\"black\")\n  lines(DateTime,meter$Sub_metering_2,type=\"l\",col=\"red\")\n  lines(DateTime,meter$Sub_metering_3,type=\"l\",col=\"blue\")\n  legend(x = \"topright\", y.intersp = 1, c(\"Sub_metering_1\", \"Sub_metering_2\", \"Sub_metering_3\"),lty=c(1, 1, 1),\n         lwd=c(2.5, 2.5, 2.5), col=c(\"black\", \"red\", \"blue\"))\n  \n  dev.off()\n}",
+    "created" : 1402205680198.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2472668462",
+    "id" : "90D56402",
+    "lastKnownWriteTime" : 1402206162,
+    "path" : "C:/Users/Peter/Desktop/RCourse/plot3.R",
+    "project_path" : "plot3.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

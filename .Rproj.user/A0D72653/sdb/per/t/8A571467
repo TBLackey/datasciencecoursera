@@ -1,0 +1,17 @@
+{
+    "contents" : "\nplot1<-function(){\n  \n  require(data.table)\n  require(lubridate)\n  \n  ##Retrieve data from the text file\n  meter<-fread(\"household_power_consumption.txt\")\n  meter$Date<-as.Date(meter$Date,\"%d/%m/%Y\")\n  newmeter <- meter[which(meter$Date==\"2007-02-01\")]\n  newmeter2<- meter[which(meter$Date==\"2007-02-02\")]\n  meter<-rbind(newmeter,newmeter2)\n  DateTime<-ymd_hms(paste(meter$Date, meter$Time, sep = \"_\"))\n  \n  ##Write plot to a png file\n  png(filename=\"plot1.png\")\n  \n  hist(as.numeric(meter$Global_active_power),main=\"Global Active Power\",col=\"red\",xlab=\"Global Active Power(kilowatts)\")\n \n  dev.off()\n}\n\n",
+    "created" : 1402205664043.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1774571941",
+    "id" : "8A571467",
+    "lastKnownWriteTime" : 1402206139,
+    "path" : "C:/Users/Peter/Desktop/RCourse/plot1.R",
+    "project_path" : "plot1.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
